@@ -25,6 +25,14 @@ namespace DO
         private bool isAlreadyDidTest;
         private List<CarTypeEnum> existingLicenses = new List<CarTypeEnum>();
 
+        /// <summary>
+        /// default ctor
+        /// </summary>
+        /// <param name="id"></param>
+        public Trainee(string id)
+        {
+            this.id = id;
+        }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string SchoolName { get => schoolName; set => schoolName = value; }
@@ -42,6 +50,10 @@ namespace DO
         public List<CarTypeEnum> ExistingLicenses { get => existingLicenses; set => existingLicenses = value; }
         public string Id { get => id; }
 
+        /// <summary>
+        /// override of ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string existingLic = "";
