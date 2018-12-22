@@ -39,7 +39,7 @@ namespace DO
         public string TeacherName { get => teacherName; set => teacherName = value; }
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public GenderEnum Gender { get => gender; set => gender = value; }
-        public Address Address { get => address; set => address = value; }
+        public Address Address { get => address; set => address = value; } 
         public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
         public DateTime LastTest { get => lastTest; set => lastTest = value; }
         public CarTypeEnum CurrCarType { get => currCarType; set => currCarType = value; }
