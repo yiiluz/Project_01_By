@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class Test
+    public class Test
     {
     }
 }
