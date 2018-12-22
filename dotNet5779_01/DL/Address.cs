@@ -12,6 +12,7 @@ namespace DO
         private string street;
         private int buildingNumber;
 
+
         /// <summary>
         /// Argument ctor of struct Address
         /// </summary>
