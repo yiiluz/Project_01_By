@@ -10,7 +10,7 @@ namespace DL
         {
             void AddTester(Tester T);
             void RemoveTester(Tester T);
-            void UpdateTesterDetails(Tester T);
+            void UpdateTesterDetails(Tester T); 
             void AddTrainee(Trainee T);
             void RemoveTrainee(Trainee T);
             void RemoveTest(Test t);
