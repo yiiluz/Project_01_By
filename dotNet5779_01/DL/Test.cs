@@ -29,8 +29,7 @@ namespace DO
         public Test()
         {
             TestId = serialNumberFactory++;
-        }
-
+        }       
         public int TestId { get => testId; set => testId = value; }
         public string TesterId { get => testerId; set => testerId = value; }
         public string TraineeId { get => traineeId; set => traineeId = value; }
