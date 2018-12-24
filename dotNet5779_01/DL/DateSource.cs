@@ -18,7 +18,7 @@ namespace DL
             public bool Writable;
             public object Value;
         }
-        public static DateSource GetDLObject()
+        public static DateSource GetDateObject()
         {
             if (date == null)
             {
@@ -39,7 +39,7 @@ namespace DL
             Configuration.Add("Trainee minimum age", new ConfigurationParameter() { Readable = true, Writable = false, Value = 18 });
             Configuration.Add("Minimum distance between test to test", new ConfigurationParameter() { Readable = true, Writable = false, Value = 7 });
             Configuration.Add("Minimum lessons", new ConfigurationParameter() { Readable = true, Writable = false, Value = 20 });
-            Configuration.Add("Tester maximum age", new ConfigurationParameter() { Readable = true, Writable = false, Value = 67 });                     
+            Configuration.Add("Tester maximum age", new ConfigurationParameter() { Readable = true, Writable = false, Value = 67 });     
         }
     }
    

@@ -9,12 +9,13 @@ namespace DL
     class DLObject : IDAL
     {
         protected static DLObject instance = null;
+        
         public static DLObject GetDLObject()
         {
             if (instance == null)
             {
-
-                instance = new DLObject();
+              instance = new DLObject();
+              DateSource a = DateSource.GetDateObject();
             }
             return instance;
         }
@@ -48,7 +49,7 @@ namespace DL
             else
             {
                 DateSource.testers.Add(t);
-               DateSource.Schedules(t.)
+                DateSource.Schedules.Add(t.Id, t.AvailableWorkTime);
             }
         }
 
@@ -156,13 +157,29 @@ namespace DL
                 throw new KeyNotFoundException("This test does not exist in the system");
             }
         }
-        Dictionary<string, Object> IDAL.getConfig()
-        {
-
-        }
+        /*Dictionary<string,Object> IDAL.getConfig()
+         {
+             Dictionary<string,Object> keyValues = new Dictionary<string,Object>();        
+           foreach(var item in DateSource.Configuration)
+             {
+                 keyValues.Add(item.Key, item.Value.Value);
+             }
+             return keyValues;
+         }*/
         void IDAL.setConfig(string parm, Object value)
         {
-
+            foreach(var item in DateSource.Configuration)
+            {
+                if(item.Key == parm)
+                {
+                    if (item.Value.Writable == true)
+                    {
+                        item.Value.Value = value;
+                        return;
+                    }
+                    throw new AccessViolationException("ERROR! There is no permission to change this property");
+                }
+            }
         }
     }
 }
