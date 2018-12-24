@@ -20,6 +20,8 @@ namespace DL
             List<Tester> GetTestersList();
             List<Trainee> GetTraineeList();
             List<Test> GetTestsList();
-        }
+        Dictionary<String, Object> getConfig();
+        void setConfig(String parm, Object value);
+    }
     
 }
