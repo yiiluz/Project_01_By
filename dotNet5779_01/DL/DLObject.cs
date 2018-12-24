@@ -13,6 +13,7 @@ namespace DL
         {
             if (instance == null)
             {
+
                 instance = new DLObject();
             }
             return instance;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DO;
 namespace DL
 {
-    internal class DateSource
+    internal static class DateSource
     {        
         internal static List<Test> tests = new List<Test>();
         internal static List<Tester> testers = new List<Tester>();
@@ -17,8 +17,9 @@ namespace DL
             public bool Writable;
             public object Value;
         }
-        internal static Dictionary<String, ConfigurationParameter> Configuration;
-        internal static Dictionary<String, bool[,]> Schedules;
 
+        internal static Dictionary<String, ConfigurationParameter> Configuration = new Dictionary<string, ConfigurationParameter>() { };          
+        internal static Dictionary<String, bool[,]> Schedules;
     }
+   
 }
