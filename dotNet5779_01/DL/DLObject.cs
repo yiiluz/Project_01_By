@@ -48,6 +48,7 @@ namespace DL
             else
             {
                 DateSource.testers.Add(t);
+               DateSource.Schedules(t.)
             }
         }
 
