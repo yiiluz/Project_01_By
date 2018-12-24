@@ -26,6 +26,12 @@ namespace DO
             buildingNumber = n;
 
         }
+        public Address(Address other)
+        {
+            city = other.City;
+            street = other.Street;
+            buildingNumber = other.BuildingNumber;
+        }
         public string City
         {
             get

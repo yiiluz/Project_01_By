@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class Tester
+    public class Tester : Person
     {
-        private readonly string id;
-        private string lastName;
-        private string firstName;
-        private string phoneNumber;
-        private DateTime dateOfBirth = new DateTime();
-        private GenderEnum gender;
-        private Address address;
         private double seniority;
         private double maxDistance;
         private int maxTestsPerWeek;
@@ -25,18 +18,23 @@ namespace DO
         /// default ctor
         /// </summary>
         /// <param name="id"></param>
-        public Tester(string id)
+        public Tester(string id) : base(id) { }
+        public Tester(Tester other) : base(other.Id)
         {
-            this.id = id;
+            LastName = other.LastName;
+            FirstName = other.FirstName;
+            SchoolName = other.SchoolName;
+            TeacherName = other.TeacherName;
+            PhoneNumber = other.PhoneNumber;
+            Gender = other.Gender;
+            Address = new Address(other.Address);
+            DateOfBirth = other.DateOfBirth;
+            Seniority = other.Seniority;
+            MaxDistance = other.MaxDistance;
+            MaxTestsPerWeek = other.MaxTestsPerWeek;
+            TypeCarToTest = other.TypeCarToTest;
+            AvailableWorkTime = other.AvailableWorkTime;
         }
-        public string Id => id;
-
-        public string LastName { get => lastName; set => lastName = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
-        public GenderEnum Gender { get => gender; set => gender = value; }
-        public Address Address { get => address; set => address = value; }
         public double Seniority { get => seniority; set => seniority = value; }
         public double MaxDistance { get => maxDistance; set => maxDistance = value; }
         public int MaxTestsPerWeek { get => maxTestsPerWeek; set => maxTestsPerWeek = value; }

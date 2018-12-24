@@ -48,7 +48,7 @@ namespace DO
         public override string ToString()
         {
             string tmp = "Test ID: " + TestId + ".\nTester ID: " + TesterId + ".\nTrainee ID: " + TraineeId + ".\nDate of Test: " +
-                DateOfTest + ".\nTest-start address: " + StartTestAddress + ".\n" + (IsPassed ? "Trainee pass" : "Trainee didn't pass") + ".\n";
+                DateOfTest.ToShortDateString() + ".\nTest-start address: " + StartTestAddress + ".\n" + (IsPassed ? "Trainee passed" : "Trainee didn't passed") + ".\n";
             return tmp;
         }
     }
