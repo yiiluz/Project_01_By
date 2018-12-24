@@ -39,7 +39,7 @@ namespace DL
                 DateSource.tests.Add(t);
             }
         }
-
+        
         void IDAL.AddTester(Tester t)
         {
             if (DateSource.testers.Find(x => x.Id == t.Id) != null)

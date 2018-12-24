@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO;
-namespace DL
+
+namespace BO
 {
-    public interface IDAL
+    public interface IBL
     {
         void AddTester(Tester T);
         void RemoveTester(Tester T);
@@ -23,5 +23,4 @@ namespace DL
         Dictionary<String, Object> getConfig();
         void setConfig(String parm, Object value);
     }
-
 }
