@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="BLImplementation.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExternalTester.cs" />
+    <Compile Include="ExternalTrainee.cs" />
+    <Compile Include="IBL.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="Tester.cs" />
+    <Compile Include="TestTester.cs" />
+    <Compile Include="Trainee.cs" />
+    <Compile Include="TraineeTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
