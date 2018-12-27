@@ -24,6 +24,7 @@ namespace BO
         private string testerNotes;
 
 
+
         public int TestId { get => testId; set => testId = value; }
         public ExternalTrainee ExTrainee { get => exTrainee; set => exTrainee = value; }
         public ExternalTester ExTester { get => exTester; set => exTester = value; }
