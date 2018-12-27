@@ -21,6 +21,7 @@ namespace DL
         List<Trainee> GetTraineeList();
         List<Test> GetTestsList();
         Dictionary<String, Object> getConfig();
+        Object getConfig(String s);
         void setConfig(String parm, Object value);
     }
 

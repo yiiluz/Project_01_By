@@ -54,5 +54,11 @@
     <Compile Include="Trainee.cs" />
     <Compile Include="TraineeTest.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DL\DL.csproj">
+      <Project>{8552d01f-92cd-4362-b084-4e513cf06ab7}</Project>
+      <Name>DL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
