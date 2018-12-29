@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace DL
 {
-    class Factory
+    public class Factory
     {
+        private static DLObject dlWithLists = new DLObject();
+
+        public static IDAL GetDLObj (string type)
+        {
+            if (type == "list")
+                return dlWithLists;
+            throw new NotImplementedException("there is no such type of dl");
+        }
     }
 }
