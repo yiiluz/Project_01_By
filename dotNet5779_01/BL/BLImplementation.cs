@@ -9,7 +9,6 @@ namespace BL
 {
     class BLImplementation : IBL
     {
-
         private static IDAL instance = null;
         public BLImplementation()
         {
