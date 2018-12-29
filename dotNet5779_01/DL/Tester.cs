@@ -13,7 +13,7 @@ namespace DO
         private int maxTestsPerWeek;
         private CarTypeEnum typeCarToTest;
         private bool[,] availableWorkTime = new bool[5, 6];
-
+        private List<Test> testList = new List<Test>();
         /// <summary>
         /// default ctor
         /// </summary>
@@ -40,6 +40,15 @@ namespace DO
         public int MaxTestsPerWeek { get => maxTestsPerWeek; set => maxTestsPerWeek = value; }
         public CarTypeEnum TypeCarToTest { get => typeCarToTest; set => typeCarToTest = value; }
         public bool[,] AvailableWorkTime { get => availableWorkTime; set => availableWorkTime = value; }
+        public List<Test> TestList { get => testList; set => testList = value; }
+        public bool IsTesterAvailiableOnDate(DateTime t ,int hour)
+        {
+            if (AvailableWorkTime[t.DayOfYear,hour] == false)
+            {
+                return false;
+            }
+            return testList.FindIndex(x => x.DateOfTest.DayOfWeek == t.DayOfWeek && x.HourOfTest == hour) == -1;
+        }
 
         /// <summary>
         /// overide ToString
