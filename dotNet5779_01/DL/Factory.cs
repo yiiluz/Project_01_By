@@ -12,7 +12,7 @@ namespace DL
 
         public static IDAL GetDLObj (string type)
         {
-            if (type == "list")
+            if (type == "lists")
                 return dlWithLists;
             throw new NotImplementedException("there is no such type of dl");
         }
