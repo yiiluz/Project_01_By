@@ -18,6 +18,26 @@ namespace BO
         private List<CarTypeEnum> existingLicenses = new List<CarTypeEnum>();
         private List<Test> traineeTest = new List<Test>();
 
+        public Trainee(DO.Trainee other) : base (other.Id)
+        {
+            LastName = other.LastName;
+            FirstName = other.FirstName;
+            SchoolName = other.SchoolName;
+            TeacherName = other.TeacherName;
+            PhoneNumber = other.PhoneNumber;
+            Gender = (GenderEnum)other.Gender;
+            Address = new Address(other.Address.City, other.Address.Street, other.Address.BuildingNumber);
+            DateOfBirth = other.DateOfBirth;
+            LastTest = new DateTime(other.LastTest.Ticks);
+            CurrCarType = (CarTypeEnum)other.CurrCarType;
+            CurrGearType = (GearboxTypeEnum)other.CurrGearType;
+            NumOfFinishedLessons = other.NumOfFinishedLessons;
+            NumOfTests = other.NumOfTests;
+            IsAlreadyDidTest = other.IsAlreadyDidTest;
+            ExistingLicenses = new List<CarTypeEnum>();
+            foreach (var item in other.ExistingLicenses)
+                ExistingLicenses.Add((CarTypeEnum)item);
+        }
         /// <summary>
         /// default ctor
         /// </summary>

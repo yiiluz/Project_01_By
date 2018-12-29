@@ -7,10 +7,10 @@ using BO;
 using DL;
 namespace BL
 {
-    class BLImplementation :IBL
+    class BLImplementation : IBL
     {
 
-        private static IDAL instance = null; 
+        private static IDAL instance = null;
         public BLImplementation()
         {
             try
@@ -22,6 +22,7 @@ namespace BL
                 throw e;
             }
         }
-        Dictionary<string,Object> keyValuesBL = instance.getConfig();
-        
+        Dictionary<string, Object> keyValuesBL = instance.getConfig();
+
     }
+}

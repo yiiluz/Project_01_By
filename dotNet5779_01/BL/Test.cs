@@ -8,7 +8,6 @@ namespace BO
 {
     public class Test
     {
-        private int testId;
         private ExternalTrainee exTrainee;
         private ExternalTester exTester;
         private DateTime dateOfTest = new DateTime();
@@ -23,9 +22,39 @@ namespace BO
         private bool isPassed;
         private string testerNotes;
 
+        //public Test(DO.Test other)
+        //{
+        //    exTrainee = new ExternalTrainee(other.TraineeId);
+        //    exTester = other.ExTester;
+        //    dateOfTest = other.DateOfTest;
+        //    hourOfTest = other.HourOfTest;
+        //    carType = other.CarType;
+        //    startTestAddress = new Address(other.StartTestAddress.City, other.StartTestAddress.Street, other.StartTestAddress.BuildingNumber);
+        //    distanceKeeping = other.DistanceKeeping;
+        //    reverseParking = other.ReverseParking;
+        //    mirrorsCheck = other.MirrorsCheck;
+        //    signals = other.Signals;
+        //    correctSpeed = other.CorrectSpeed;
+        //    isPassed = other.IsPassed;
+        //    testerNotes = other.TesterNotes;
+        //}
+        public Test(Test other)
+        {
+            exTrainee = other.ExTrainee;
+            exTester = other.ExTester;
+            dateOfTest = other.DateOfTest;
+            hourOfTest = other.HourOfTest;
+            carType = other.CarType;
+            startTestAddress = new Address(other.StartTestAddress.City, other.StartTestAddress.Street, other.StartTestAddress.BuildingNumber);
+            distanceKeeping = other.DistanceKeeping;
+            reverseParking = other.ReverseParking;
+            mirrorsCheck = other.MirrorsCheck;
+            signals = other.Signals;
+            correctSpeed = other.CorrectSpeed;
+            isPassed = other.IsPassed;
+            testerNotes = other.TesterNotes;
+        }
 
-
-        public int TestId { get => testId; set => testId = value; }
         public ExternalTrainee ExTrainee { get => exTrainee; set => exTrainee = value; }
         public ExternalTester ExTester { get => exTester; set => exTester = value; }
         public DateTime DateOfTest { get => dateOfTest; set => dateOfTest = value; }

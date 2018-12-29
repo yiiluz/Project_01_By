@@ -20,6 +20,23 @@ namespace BO
         /// </summary>
         /// <param name="id"></param>
         public Tester(string id) : base(id) { }
+
+        public Tester(DO.Tester other) : base(other.Id)
+        {
+            LastName = other.LastName;
+            FirstName = other.FirstName;
+            SchoolName = other.SchoolName;
+            TeacherName = other.TeacherName;
+            PhoneNumber = other.PhoneNumber;
+            Gender = (GenderEnum)other.Gender;
+            Address = new Address(other.Address.City, other.Address.Street, other.Address.BuildingNumber);
+            DateOfBirth = other.DateOfBirth;
+            Seniority = other.Seniority;
+            MaxDistance = other.MaxDistance;
+            MaxTestsPerWeek = other.MaxTestsPerWeek;
+            TypeCarToTest = (CarTypeEnum)other.TypeCarToTest;
+            AvailableWorkTime = other.AvailableWorkTime;
+        }
         public Tester(Tester other) : base(other.Id)
         {
             LastName = other.LastName;
