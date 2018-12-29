@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DO; 
 namespace DL
 {
-    class DLObject : IDAL
+    class DLObject : IDAL 
     {
         protected static DLObject instance = null;
         
