@@ -9,7 +9,7 @@ namespace DL
     public class DLObject : IDAL
     {
         protected static DLObject instance = null;
-        
+        protected DLObject() { } 
         public static DLObject GetDLObject()
         {
             if (instance == null)
