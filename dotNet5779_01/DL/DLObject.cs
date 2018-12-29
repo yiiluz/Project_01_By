@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DO; 
 namespace DL
 {
-    class DLObject : IDAL 
+    public class DLObject : IDAL
     {
         protected static DLObject instance = null;
         
@@ -157,15 +157,18 @@ namespace DL
                 throw new KeyNotFoundException("This test does not exist in the system");
             }
         }
-        /*Dictionary<string,Object> IDAL.getConfig()
+          Dictionary<string,Object> IDAL.getConfig()
          {
              Dictionary<string,Object> keyValues = new Dictionary<string,Object>();        
-           foreach(var item in DateSource.Configuration)
+             foreach(var item in DateSource.Configuration)
              {
-                 keyValues.Add(item.Key, item.Value.Value);
+                if (item.Value.Readable == true)
+                {
+                    keyValues.Add(item.Key, item.Value.Value);
+                }
              }
              return keyValues;
-         }*/
+         }
         void IDAL.setConfig(string parm, Object value)
         {
             foreach(var item in DateSource.Configuration)
@@ -177,9 +180,29 @@ namespace DL
                         item.Value.Value = value;
                         return;
                     }
-                    throw new AccessViolationException("ERROR! There is no permission to change this property");
+                    throw new AccessViolationException("ERROR! There is no permission to change this configuration property");
                 }
             }
+        }
+        Object IDAL.getConfig(string s)
+        {
+            foreach(var item in DateSource.Configuration)
+            {
+                if(item.Key == s)
+                {
+                    if (item.Value.Readable == true)
+                    {
+                        DateSource.ConfigurationParameter conf = new DateSource.ConfigurationParameter();
+                        conf = item.Value;
+                        return conf.Value;
+                    }
+                    else
+                    {
+                        throw new AccessViolationException("ERROR! There is no permission to read this configutation property");
+                    }
+                }
+            }
+            throw new KeyNotFoundException("ERROR! There is no configuration feature with this name");
         }
     }
 }
