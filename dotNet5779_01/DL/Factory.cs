@@ -8,7 +8,7 @@ namespace DL
 {
     public class Factory
     {
-        private static DLObject dlWithLists = new DLObject();
+        private static IDAL dlWithLists = DLObject.GetDLObject();
 
         public static IDAL GetDLObj (string type)
         {
