@@ -53,12 +53,14 @@ namespace BO
             TypeCarToTest = other.TypeCarToTest;
             AvailableWorkTime = other.AvailableWorkTime;
         }
+        public bool IsTesterAvailiableOnDate(DateTime t)
         public double Seniority { get => seniority; set => seniority = value; }
         public double MaxDistance { get => maxDistance; set => maxDistance = value; }
         public int MaxTestsPerWeek { get => maxTestsPerWeek; set => maxTestsPerWeek = value; }
         public CarTypeEnum TypeCarToTest { get => typeCarToTest; set => typeCarToTest = value; }
         public bool[,] AvailableWorkTime { get => availableWorkTime; set => availableWorkTime = value; }
         public List<Test> TestList { get => testList; set => testList = value; }
+
 
         /// <summary>
         /// overide ToString
