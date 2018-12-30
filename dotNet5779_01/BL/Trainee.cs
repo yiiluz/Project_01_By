@@ -8,7 +8,8 @@ namespace BO
 {
     public class Trainee : Person
     {
-
+        private string schoolName;
+        private string teacherName;
         private DateTime lastTest = new DateTime();
         private CarTypeEnum currCarType;
         private GearboxTypeEnum currGearType;
@@ -62,7 +63,8 @@ namespace BO
             IsAlreadyDidTest = other.IsAlreadyDidTest;
             ExistingLicenses = new List<CarTypeEnum>(other.ExistingLicenses);
         }
-
+        public string SchoolName { get => schoolName; set => schoolName = value; }
+        public string TeacherName { get => teacherName; set => teacherName = value; }
         public DateTime LastTest { get => lastTest; set => lastTest = value; }
         public CarTypeEnum CurrCarType { get => currCarType; set => currCarType = value; }
         public GearboxTypeEnum CurrGearType { get => currGearType; set => currGearType = value; }

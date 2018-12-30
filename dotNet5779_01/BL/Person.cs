@@ -11,8 +11,6 @@ namespace BO
         readonly string id;
         private string lastName;
         private string firstName;
-        private string schoolName;
-        private string teacherName;
         private string phoneNumber;
         private GenderEnum gender;
         private Address address = new Address();
@@ -23,9 +21,7 @@ namespace BO
             this.id = id;
         }
         public string LastName { get => lastName; set => lastName = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string SchoolName { get => schoolName; set => schoolName = value; }
-        public string TeacherName { get => teacherName; set => teacherName = value; }
+        public string FirstName { get => firstName; set => firstName = value; }       
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public GenderEnum Gender { get => gender; set => gender = value; }
         public Address Address { get => address; set => address = value; }

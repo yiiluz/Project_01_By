@@ -22,9 +22,7 @@ namespace DO
         public Tester(Tester other) : base(other.Id)
         {
             LastName = other.LastName;
-            FirstName = other.FirstName;
-            SchoolName = other.SchoolName;
-            TeacherName = other.TeacherName;
+            FirstName = other.FirstName;           
             PhoneNumber = other.PhoneNumber;
             Gender = other.Gender;
             Address = new Address(other.Address);
