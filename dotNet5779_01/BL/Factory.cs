@@ -12,6 +12,7 @@ namespace BL
         public static IBL GetBLObj()
         {
             return bl;
+
         }
     }
 }
