@@ -10,7 +10,7 @@ namespace DO
     {
         static int serialNumberFactory = 10000000;
 
-        private int testId;
+        private string testId;
         private string testerId;
         private string traineeId;
         private DateTime dateOfTest = new DateTime();
@@ -28,9 +28,9 @@ namespace DO
 
         public Test()
         {
-            TestId = serialNumberFactory++;
+            TestId = Convert.ToString(serialNumberFactory++);
         }       
-        public int TestId { get => testId; set => testId = value; }
+        public string TestId { get => testId; set => testId = value; }
         public string TesterId { get => testerId; set => testerId = value; }
         public string TraineeId { get => traineeId; set => traineeId = value; }
         public DateTime DateOfTest { get => dateOfTest; set => dateOfTest = value; }
@@ -45,6 +45,7 @@ namespace DO
         public bool IsPassed { get => isPassed; set => isPassed = value; }
         public string TesterNotes { get => testerNotes; set => testerNotes = value; }
         public bool IsTesterUpdateStatus { get => isTesterUpdateStatus; set => isTesterUpdateStatus = value; }
+
         public override string ToString()
         {
             string tmp = "Test ID: " + TestId + ".\nTester ID: " + TesterId + ".\nTrainee ID: " + TraineeId + ".\nDate of Test: " +

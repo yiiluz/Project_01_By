@@ -8,6 +8,7 @@ namespace BO
 {
     public class Test
     {
+        private string testId="";
         private ExternalTrainee exTrainee;
         private ExternalTester exTester;
         private DateTime dateOfTest = new DateTime();
@@ -21,23 +22,25 @@ namespace BO
         private bool correctSpeed;
         private bool isPassed;
         private string testerNotes;
-
-        //public Test(DO.Test other)
-        //{
-        //    exTrainee = new ExternalTrainee(other.TraineeId);
-        //    exTester = other.ExTester;
-        //    dateOfTest = other.DateOfTest;
-        //    hourOfTest = other.HourOfTest;
-        //    carType = other.CarType;
-        //    startTestAddress = new Address(other.StartTestAddress.City, other.StartTestAddress.Street, other.StartTestAddress.BuildingNumber);
-        //    distanceKeeping = other.DistanceKeeping;
-        //    reverseParking = other.ReverseParking;
-        //    mirrorsCheck = other.MirrorsCheck;
-        //    signals = other.Signals;
-        //    correctSpeed = other.CorrectSpeed;
-        //    isPassed = other.IsPassed;
-        //    testerNotes = other.TesterNotes;
-        //}
+        private bool isTesterUpdateStatus;
+        public Test(DO.Test other)
+        {
+            TestId = other.TestId;
+            exTrainee = new ExternalTrainee(other.TraineeId);/////////////////////////////////////
+            exTester = new ExternalTester(other.TesterId);////////////////////////////////////////
+            dateOfTest = other.DateOfTest;
+            hourOfTest = other.HourOfTest;
+            carType = (CarTypeEnum)other.CarType;
+            startTestAddress = new Address(other.StartTestAddress.City, other.StartTestAddress.Street, other.StartTestAddress.BuildingNumber);
+            distanceKeeping = other.DistanceKeeping;
+            reverseParking = other.ReverseParking;
+            mirrorsCheck = other.MirrorsCheck;
+            signals = other.Signals;
+            correctSpeed = other.CorrectSpeed;
+            isPassed = other.IsPassed;
+            testerNotes = other.TesterNotes;
+            isTesterUpdateStatus = other.IsTesterUpdateStatus;
+        }
         public Test(Test other)
         {
             exTrainee = other.ExTrainee;
@@ -53,6 +56,7 @@ namespace BO
             correctSpeed = other.CorrectSpeed;
             isPassed = other.IsPassed;
             testerNotes = other.TesterNotes;
+            isTesterUpdateStatus = other.isTesterUpdateStatus;
         }
 
         public ExternalTrainee ExTrainee { get => exTrainee; set => exTrainee = value; }
@@ -68,5 +72,7 @@ namespace BO
         public bool CorrectSpeed { get => correctSpeed; set => correctSpeed = value; }
         public bool IsPassed { get => isPassed; set => isPassed = value; }
         public string TesterNotes { get => testerNotes; set => testerNotes = value; }
+        public bool IsTesterUpdateStatus { get => isTesterUpdateStatus; set => isTesterUpdateStatus = value; }
+        public string TestId { get => testId; }
     }
 }

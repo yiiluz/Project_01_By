@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO; 
+using DO;
 namespace DL
 {
-    public class DLObject : IDAL
+    internal class DLObject : IDAL
     {
         protected static DLObject instance = null;
-        protected DLObject() { } 
+        protected DLObject() { }
         public static DLObject GetDLObject()
         {
             if (instance == null)
             {
-              instance = new DLObject();
-              DateSource a = DateSource.GetDateObject();
+                instance = new DLObject();
+                DateSource a = DateSource.GetDateObject();
             }
             return instance;
         }
@@ -39,7 +39,7 @@ namespace DL
                 DateSource.tests.Add(t);
             }
         }
-        
+
         void IDAL.AddTester(Tester t)
         {
             if (DateSource.testers.Find(x => x.Id == t.Id) != null)
@@ -84,11 +84,11 @@ namespace DL
             return trainees2;
         }
 
-        void IDAL.RemoveTester(Tester T)
+        void IDAL.RemoveTester(string id)
         {
-            if (DateSource.testers.Find(x => x.Id == T.Id) != null)
+            if (DateSource.testers.Exists(x => x.Id == id))
             {
-                DateSource.testers.Remove(DateSource.testers.Find(x => x.Id == T.Id));
+                DateSource.testers.Remove(DateSource.testers.Find(x => x.Id == id));
             }
             else
             {
@@ -96,11 +96,11 @@ namespace DL
             }
         }
 
-        void IDAL.RemoveTrainee(Trainee T)
+        void IDAL.RemoveTrainee(string id)
         {
-            if (DateSource.trainees.Find(x => x.Id == T.Id) != null)
+            if (DateSource.trainees.Find(x => x.Id == id) != null)
             {
-                DateSource.trainees.Remove(DateSource.trainees.Find(x => x.Id == T.Id));
+                DateSource.trainees.Remove(DateSource.trainees.Find(x => x.Id == id));
             }
             else
             {
@@ -141,39 +141,39 @@ namespace DL
             {
                 DateSource.trainees[index] = T;
             }
-            else 
+            else
             {
                 throw new KeyNotFoundException("this trainee does not exist in the system");
             }
         }
-        void IDAL.RemoveTest(Test t)
+        void IDAL.RemoveTest(string id)
         {
-            if (DateSource.tests.Find(x => x.TestId == t.TestId) != null && DateSource.testers.Find(x => x.Id == t.TesterId) != null && DateSource.trainees.Find(x => x.Id == t.TraineeId) != null)
+            if (DateSource.tests.Exists(x => x.TestId == id))
             {
-                DateSource.tests.Remove(DateSource.tests.Find(x => x.TestId == t.TestId));
+                DateSource.tests.Remove(DateSource.tests.Find(x => x.TestId == id));
             }
             else
             {
                 throw new KeyNotFoundException("This test does not exist in the system");
             }
         }
-          Dictionary<string,Object> IDAL.getConfig()
-         {
-             Dictionary<string,Object> keyValues = new Dictionary<string,Object>();        
-             foreach(var item in DateSource.Configuration)
-             {
+        Dictionary<string, Object> IDAL.GetConfig()
+        {
+            Dictionary<string, Object> keyValues = new Dictionary<string, Object>();
+            foreach (var item in DateSource.Configuration)
+            {
                 if (item.Value.Readable == true)
                 {
                     keyValues.Add(item.Key, item.Value.Value);
                 }
-             }
-             return keyValues;
-         }
-        void IDAL.setConfig(string parm, Object value)
+            }
+            return keyValues;
+        }
+        void IDAL.SetConfig(string parm, Object value)
         {
-            foreach(var item in DateSource.Configuration)
+            foreach (var item in DateSource.Configuration)
             {
-                if(item.Key == parm)
+                if (item.Key == parm)
                 {
                     if (item.Value.Writable == true)
                     {
@@ -184,11 +184,11 @@ namespace DL
                 }
             }
         }
-        Object IDAL.getConfig(string s)
+        Object IDAL.GetConfig(string s)
         {
-            foreach(var item in DateSource.Configuration)
+            foreach (var item in DateSource.Configuration)
             {
-                if(item.Key == s)
+                if (item.Key == s)
                 {
                     if (item.Value.Readable == true)
                     {
