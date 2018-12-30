@@ -42,11 +42,9 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="BLImplementation.cs" />
-    <Compile Include="Converter.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="ExternalTester.cs" />
     <Compile Include="ExternalTrainee.cs" />
-    <Compile Include="Factory.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

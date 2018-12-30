@@ -7,7 +7,7 @@ using BO;
 using DL;
 namespace BL
 {
-    class BLImplementation : IBL
+    internal class BLImplementation : IBL
     {
         private IDAL instance = null;
         public BLImplementation()
@@ -21,13 +21,234 @@ namespace BL
                 throw e;
             }
         }
-        Dictionary<string, Object> keyValuesBL = instance.getConfig();
+        public void AddTester(Tester t)
+        {
+            int minAge, maxAge;
+            try
+            {
+                minAge = (int)instance.GetConfig("Tester minimum age");
+                maxAge = (int)instance.GetConfig("Tester maximun age");
+            }
+            catch (AccessViolationException e)
+            {
+                throw e;
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw e;
+            }
+            int testerAge = (DateTime.Now.Year - t.DateOfBirth.Year);
+            if (testerAge < minAge || testerAge > maxAge)
+            {
+                throw new ArgumentOutOfRangeException("Tester age is not on range of " + minAge + "-" + maxAge);
+            }
+            else try
+                {
+                    instance.AddTester(CreateDOFromBO.CreateDOTester(t));
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void RemoveTester(string id)
+        {
+            bool exist = GetTestersList().Exists(x => x.Id == id);
+            if (!exist)
+            {
+                throw new KeyNotFoundException("Can't remove this tester becauze he is not on the system.");
+            }
+            else try
+                {
+                    instance.RemoveTester(id);
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void UpdateTesterDetails(Tester t)
+        {
+            bool exist = GetTestersList().Exists(x => x.Id == t.Id);
+            if (!exist)
+                throw new KeyNotFoundException("Can't update this tester becauze he is not on the system.");
+            else try
+                {
+                    instance.UpdateTesterDetails(CreateDOFromBO.CreateDOTester(t));
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void AddTrainee(Trainee t)
+        {
+            int minAge;
+            try
+            {
+                minAge = (int)GetConfig("Trainee minimum age");
+            }
+            catch (AccessViolationException e)
+            {
+                throw e;
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw e;
+            }
+            int traineeAge = (DateTime.Now.Year - t.DateOfBirth.Year);
+            if (traineeAge < minAge)
+            {
+                throw new ArgumentOutOfRangeException("Trainee age is not on above " + minAge + ".");
+            }
+            else try
+                {
+                    instance.AddTrainee(CreateDOFromBO.CreateDoTrainee(t));
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void RemoveTrainee(string id)
+        {
+            bool exist = GetTraineeList().Exists(x => x.Id == id);
+            if (!exist)
+            {
+                throw new KeyNotFoundException("Can't remove this trainee becauze he is not on the system.");
+            }
+            else try
+                {
+                    instance.RemoveTrainee(id);
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void UpdateTraineeDetails(Trainee t)
+        {
+            bool exist = GetTraineeList().Exists(x => x.Id == t.Id);
+            if (!exist)
+                throw new KeyNotFoundException("Can't update this trainee because he is not on the system.");
+            else try
+                {
+                    instance.UpdateTraineeDetails(CreateDOFromBO.CreateDoTrainee(t));
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void AddTest(Test t)
+        {
+            bool traineeExist = GetTraineeList().Exists(x => x.Id == t.ExTrainee.Id);
+            bool testerExist = GetTestersList().Exists(x => x.Id == t.ExTester.Id);
+            string errors = "ERROR!\n";
+            if (!testerExist || !traineeExist)
+            {
+                if (!traineeExist)
+                    errors += "The trainee linked to test is not exist on the system.\n"; 
+                if (!testerExist)
+                    errors += "The tester linked to test is not exist on the system.\n";
+                throw new KeyNotFoundException(errors);
+            }
+            else
+            {
+                Trainee trainee = GetTraineeList().Find(x => x.Id == t.ExTrainee.Id);
+                Tester tester = GetTestersList().Find(x => x.Id == t.ExTester.Id);
+                if (trainee.IsAlreadyDidTest)
+                {
+                    int minDaysBetweenTests = -1;
+                    try
+                    {
+                        minDaysBetweenTests = (int)instance.GetConfig("Minimum days between tests");
+                    }
+                    catch (AccessViolationException e)
+                    {
+                        errors += (e.Message + "\n");
+                    }
+                    catch (KeyNotFoundException e)
+                    {
+                        errors += (e.Message + "\n");
+                    }
+                    if (minDaysBetweenTests != -1 && (DateTime.Now - trainee.LastTest).Days < minDaysBetweenTests)
+                        errors += "The trainee last days was closer then allowed.\n";
+                }
+                int minLesson = -1;
+                try
+                {
+                    minLesson = (int)instance.GetConfig("Minimum lessons");
+                }
+                catch (AccessViolationException e)
+                {
+                    errors += (e.Message + "\n");
+                }
+                catch (KeyNotFoundException e)
+                {
+                    errors += (e.Message + "\n");
+                }
+                if (minLesson != -1 && trainee.NumOfFinishedLessons < minLesson)
+                {
+                    errors += "Trainee did not passed enough lessons for test.\n";
+                }
+                if (tester.MaxTestsPerWeek + 1 > tester.GetNumOfTestThisWeek())
+                    errors += "Tester allready have maximum tests for this week.\n";
+
+            }
+        }
+        public void RemoveTest(string id)
+        {
+            bool exist = GetTestsList().Exists(x => x.TestId == id);
+            if (!exist)
+            {
+                throw new KeyNotFoundException("Can't remove this test because he is not on the system.");
+            }
+            else try
+                {
+                    instance.RemoveTest(id);
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public void UpdateTest(Test t)
+        {
+            bool exist = GetTestsList().Exists(x => x.TestId == t.TestId);
+            if (!exist)
+                throw new KeyNotFoundException("Can't update this test because he is not on the system.");
+            else try
+                {
+                    instance.UpdateTest(CreateDOFromBO.CreateDOTest(t));
+                }
+                catch (KeyNotFoundException e)
+                {
+                    throw e;
+                }
+        }
+        public List<Tester> GetTestersList()
+        {
+            var lst = from item in instance.GetTestersList() select new Tester(item);
+            return (List<Tester>)lst;
+        }
+        public List<Trainee> GetTraineeList()
+        {
+            var lst = from item in instance.GetTraineeList() select new Trainee(item);
+            return (List<Trainee>)lst;
+        }
+        public List<Test> GetTestsList()
+        {
+            var lst = from item in instance.GetTestsList() select new Test(item);
+            return (List<Test>)lst;
+        }
+        Dictionary<string, Object> keyValuesBL = instance.GetConfig();
         public IEnumerable<Tester> AvailableTeacher(DateTime time, int hour)
         {
             var AvailableTesters = from item in instance.GetTestersList()
                                    orderby item.LastName, item.FirstName
                                    where item.IsTesterAvailiableOnDate(time, hour) == true
-                                   select new Tester(iten);
+                                   select new Tester(item);
             return AvailableTesters;
         }
         public IEnumerable<Test> GetTestsPartialListByPredicate(Func<DO.Test, bool> func)
@@ -38,7 +259,7 @@ namespace BL
                                       select new Test(item);
             return StandOnTheCondition;
         }
-        public int NumberOfTestsTested(Trainee t)
+        public int NumberOfTests(Trainee t)
         {
             return t.NumOfTests;
         }
@@ -88,7 +309,7 @@ namespace BL
                                                         group item by item.SchoolName
                                                         into g
                                                         orderby g.Key
-                                                        select g; 
+                                                        select g;
                 return StudentGroupsByAttributeWithOrder;
             }
             var StudentGroupsByAttributeWithOutOrder = from item in GetTraineeList()

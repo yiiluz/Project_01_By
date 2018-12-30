@@ -35,6 +35,8 @@ namespace BO
             MaxTestsPerWeek = other.MaxTestsPerWeek;
             TypeCarToTest = (CarTypeEnum)other.TypeCarToTest;
             AvailableWorkTime = other.AvailableWorkTime;
+            foreach (var item in other.TestList)
+                TestList.Add(new Test(item));
         }
         public Tester(Tester other) : base(other.Id)
         {
@@ -51,8 +53,18 @@ namespace BO
             MaxTestsPerWeek = other.MaxTestsPerWeek;
             TypeCarToTest = other.TypeCarToTest;
             AvailableWorkTime = other.AvailableWorkTime;
+            foreach (var item in other.TestList)
+                TestList.Add(item);
         }
-        public bool IsTesterAvailiableOnDate(DateTime t)
+        public int GetNumOfTestThisWeek()
+        {
+            int num = 0;
+            foreach (var item in TestList)
+                if (item.DateOfTest.AddDays(-(int)item.DateOfTest.DayOfWeek) == (DateTime.Now).AddDays(-(int)DateTime.Now.DayOfWeek))
+                    num++;
+            return num;
+        }
+        public bool IsTesterAvailiableOnDate(DateTime t);
         public double Seniority { get => seniority; set => seniority = value; }
         public double MaxDistance { get => maxDistance; set => maxDistance = value; }
         public int MaxTestsPerWeek { get => maxTestsPerWeek; set => maxTestsPerWeek = value; }

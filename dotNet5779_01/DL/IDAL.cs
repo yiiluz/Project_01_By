@@ -9,20 +9,20 @@ namespace DL
     public interface IDAL
     {
         void AddTester(Tester T);
-        void RemoveTester(Tester T);
+        void RemoveTester(string id);
         void UpdateTesterDetails(Tester T);
         void AddTrainee(Trainee T);
-        void RemoveTrainee(Trainee T);
-        void RemoveTest(Test t);
+        void RemoveTrainee(string id);
+        void RemoveTest(string id);
         void UpdateTraineeDetails(Trainee T);
         void AddTest(Test t);
         void UpdateTest(Test t);
         List<Tester> GetTestersList();
         List<Trainee> GetTraineeList();
         List<Test> GetTestsList();
-        Dictionary<String, Object> getConfig();
-        Object getConfig(String s);
-        void setConfig(String parm, Object value);
+        Dictionary<String, Object> GetConfig();
+        Object GetConfig(String s);
+        void SetConfig(String parm, Object value);
     }
 
 }
