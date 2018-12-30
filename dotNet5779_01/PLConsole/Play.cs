@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BO;
+using BL;
 namespace PLConsole
 {
-    class AddPerson
+    class Play
     {
-        private Person AddP()
+        private Person AddPerson()
         {
             Console.WriteLine("Enter tester ID\n");
             string id = Console.ReadLine();
@@ -46,7 +47,7 @@ namespace PLConsole
                 Console.WriteLine("Enter Date of Birth:\n");
                 DateTime dateOfBirth;
                 string dateOfBirth2 = Console.ReadLine();
-                if(DateTime.TryParse(dateOfBirth2, out dateOfBirth)) { person.DateOfBirth = dateOfBirth; }
+                if (DateTime.TryParse(dateOfBirth2, out dateOfBirth)) { person.DateOfBirth = dateOfBirth; }
                 else { throw new FormatException("ERROR! Invalid birth date"); }
             }
             else { throw new FormatException("ERROR! Invalid ID"); }
@@ -54,7 +55,7 @@ namespace PLConsole
         }
         public Tester AddTester()
         {
-            Person person = new Person(AddP());
+            Person person = new Person(AddPerson());
             Tester tester = new Tester(person.Id);
             tester.FirstName = person.FirstName;
             tester.LastName = person.LastName;
@@ -65,30 +66,30 @@ namespace PLConsole
             Console.WriteLine("Enter seniority:");
             string num = Console.ReadLine();
             double num2;
-            if (double.TryParse(num,out num2)){ tester.Seniority =num2; }
+            if (double.TryParse(num, out num2)) { tester.Seniority = num2; }
             else { throw new FormatException("ERROR! The input for the trial number, is incorrect"); }
             Console.WriteLine("Insert the maximum distance the tester agrees to come\n");
-            num = Console.ReadLine();          
+            num = Console.ReadLine();
             if (double.TryParse(num, out num2)) { tester.MaxDistance = num2; }
             else { throw new FormatException("ERROR! The distance is not correct"); }
             Console.WriteLine("Enter the maximum number of tests the tester agrees to do per week\n");
             string MaxTestsPerWeek = Console.ReadLine();
             int MaxTestsPerWeek2;
-            if(int.TryParse(MaxTestsPerWeek, out MaxTestsPerWeek2)) { tester.MaxTestsPerWeek = MaxTestsPerWeek2; }
-            else { throw new FormatException("The maximum number of lessons per week was reached"); }         
+            if (int.TryParse(MaxTestsPerWeek, out MaxTestsPerWeek2)) { tester.MaxTestsPerWeek = MaxTestsPerWeek2; }
+            else { throw new FormatException("The maximum number of lessons per week was reached"); }
             Console.WriteLine("Enter the type of car in which the tester specializes\n");
             Console.WriteLine("for Motor Cycle enter: 1 \n for Private Car enter: 2 \n for Truck 12 Tons enter: 3 \n for Truck Un limited enter: 4 \n for bus enter: 5 \n");
-            int numOfTesterCars,car;
+            int numOfTesterCars, car;
             Console.WriteLine("How many types of teacher cars are specializing?\n");
             bool OK = int.TryParse(Console.ReadLine(), out numOfTesterCars);
             if (OK)
             {
-                for (int i = 0; i <numOfTesterCars; i++)
+                for (int i = 0; i < numOfTesterCars; i++)
                 {
                     Console.WriteLine("Enter the type of car in which the tester specializes\n");
                     Console.WriteLine("for Motor Cycle enter: 1 \n for Private Car enter: 2 \n for Truck 12 Tons enter: 3 \n for Truck Un limited enter: 4 \n for bus enter: 5 \n");
 
-                     OK = int.TryParse(Console.ReadLine(), out car);
+                    OK = int.TryParse(Console.ReadLine(), out car);
                     if (OK)
                     {
                         switch (car)
@@ -121,7 +122,7 @@ namespace PLConsole
         }
         public Trainee AddTrainee()
         {
-            Person person = new Person(AddP());
+            Person person = new Person(AddPerson());
             Trainee trainee = new Trainee(person.Id);
             trainee.FirstName = person.FirstName;
             trainee.LastName = person.LastName;
@@ -136,8 +137,8 @@ namespace PLConsole
                 Console.WriteLine("Enter the date of the last test \n");
                 string lastTest = Console.ReadLine();
                 DateTime lastTest2;
-                if(DateTime.TryParse(lastTest,out lastTest2)) { trainee.LastTest = lastTest2; }
-                else { throw new FormatException("The last test date is invalid \n"); }       
+                if (DateTime.TryParse(lastTest, out lastTest2)) { trainee.LastTest = lastTest2; }
+                else { throw new FormatException("The last test date is invalid \n"); }
             }
             Console.WriteLine("Enter the type of car license the student is studying\n");
             Console.WriteLine("for Motor Cycle enter: 1 \n for Private Car enter: 2 \n for Truck 12 Tons enter: 3 \n for Truck Un limited enter: 4 \n for bus enter: 5 \n");
@@ -162,32 +163,34 @@ namespace PLConsole
                     case 5:
                         trainee.CurrCarType = CarTypeEnum.Bus;
                         break;
-                    default: throw new FormatException("ERROR! Invalid vehicle selection");         
+                    default: throw new FormatException("ERROR! Invalid vehicle selection");
                 }
-                Console.WriteLine("Insert 1 if automatic or 2 if manual: \n");               
+                Console.WriteLine("Insert 1 if automatic or 2 if manual: \n");
                 car = int.TryParse(Console.ReadLine(), out car1);
                 switch (car1)
                 {
-                    case 1: trainee.CurrGearType = GearboxTypeEnum.auto;
+                    case 1:
+                        trainee.CurrGearType = GearboxTypeEnum.auto;
                         break;
-                    case 2: trainee.CurrGearType = GearboxTypeEnum.manual;
+                    case 2:
+                        trainee.CurrGearType = GearboxTypeEnum.manual;
                         break;
-                    default: throw new FormatException("Invalid Gear box selection");        
+                    default: throw new FormatException("Invalid Gear box selection");
                 }
                 Console.WriteLine("Enter the number of lessons the trainee has finished \n");
                 car = int.TryParse(Console.ReadLine(), out car1);
                 if (car) { trainee.NumOfFinishedLessons = car1; }
-                else { throw new FormatException("The number of classes is invalid");}
+                else { throw new FormatException("The number of classes is invalid"); }
                 Console.WriteLine("Enter the number of tests a trainee has done \n");
                 car = int.TryParse(Console.ReadLine(), out car1);
-                if (car) { trainee.NumOfTests= car1; }
+                if (car) { trainee.NumOfTests = car1; }
                 else { throw new FormatException("The number of tests is invalid"); }
                 Console.WriteLine("Enter the number of licenses the trainee has");
                 car = int.TryParse(Console.ReadLine(), out car1);
                 if (car)
                 {
                     int car2;
-                    for (int i = 0; i <car1; i++)
+                    for (int i = 0; i < car1; i++)
                     {
                         Console.WriteLine("for Motor Cycle enter: 1 \n for Private Car enter: 2 \n for Truck 12 Tons enter: 3 \n for Truck Un limited enter: 4 \n for bus enter: 5 \n");
                         car = int.TryParse(Console.ReadLine(), out car2);
@@ -195,15 +198,20 @@ namespace PLConsole
                         {
                             switch (car2)
                             {
-                                case 1: trainee.ExistingLicenses.Add(CarTypeEnum.MotorCycle);
+                                case 1:
+                                    trainee.ExistingLicenses.Add(CarTypeEnum.MotorCycle);
                                     break;
-                                case 2: trainee.ExistingLicenses.Add(CarTypeEnum.PrivateCar);
+                                case 2:
+                                    trainee.ExistingLicenses.Add(CarTypeEnum.PrivateCar);
                                     break;
-                                case 3: trainee.ExistingLicenses.Add(CarTypeEnum.Truck12Tons);
+                                case 3:
+                                    trainee.ExistingLicenses.Add(CarTypeEnum.Truck12Tons);
                                     break;
-                                case 4: trainee.ExistingLicenses.Add(CarTypeEnum.TruckUnlimited);
+                                case 4:
+                                    trainee.ExistingLicenses.Add(CarTypeEnum.TruckUnlimited);
                                     break;
-                                case 5: trainee.ExistingLicenses.Add(CarTypeEnum.Bus);
+                                case 5:
+                                    trainee.ExistingLicenses.Add(CarTypeEnum.Bus);
                                     break;
                                 default: throw new FormatException("ERROR! Invalid vehicle selection");
                             }
@@ -214,6 +222,25 @@ namespace PLConsole
                 }
             }
             return trainee;
-        }      
+        }
+       public Tester UpdateTesterDetails(IBL bL) 
+        {
+            Console.WriteLine("Enter the Tester ID you want to update");
+            string id = Console.ReadLine();
+            if (id.All(char.IsDigit) && id.Length == 9)
+            {
+                int index = bL.GetTestersList().FindIndex(x => x.Id == id);
+                if(index > -1)
+                {
+                    Tester tester = new Tester(bL.GetTestersList()[index]);
+                    Console.WriteLine("To update an phone number enter: 1 \n To update an address enter: 2 \n To update sen");
+                }
+                else { throw new KeyNotFoundException("There is no tester with this ID in the system"); }
+
+            }
+         return
+        }
     }
 }
+
+

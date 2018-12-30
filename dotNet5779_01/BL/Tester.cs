@@ -23,9 +23,7 @@ namespace BO
         private Tester(DO.Tester other) : base(other.Id)
         {
             LastName = other.LastName;
-            FirstName = other.FirstName;
-            SchoolName = other.SchoolName;
-            TeacherName = other.TeacherName;
+            FirstName = other.FirstName;      
             PhoneNumber = other.PhoneNumber;
             Gender = (GenderEnum)other.Gender;
             Address = new Address(other.Address.City, other.Address.Street, other.Address.BuildingNumber);
@@ -41,9 +39,7 @@ namespace BO
         public Tester(Tester other) : base(other.Id)
         {
             LastName = other.LastName;
-            FirstName = other.FirstName;
-            SchoolName = other.SchoolName;
-            TeacherName = other.TeacherName;
+            FirstName = other.FirstName;          
             PhoneNumber = other.PhoneNumber;
             Gender = other.Gender;
             Address = new Address(other.Address);
