@@ -148,7 +148,7 @@ namespace BL
             if (!testerExist || !traineeExist)
             {
                 if (!traineeExist)
-                    errors += "The trainee linked to test is not exist on the system.\n";
+                    errors += "The trainee linked to test is not exist on the system.\n"; 
                 if (!testerExist)
                     errors += "The tester linked to test is not exist on the system.\n";
                 throw new KeyNotFoundException(errors);
