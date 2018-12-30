@@ -19,9 +19,8 @@ namespace BO
         /// default ctor
         /// </summary>
         /// <param name="id"></param>
-        public Tester(string id) : base(id) { }
-
-        public Tester(DO.Tester other) : base(other.Id)
+        public Tester(string id) : base(id) { }      
+        private Tester(DO.Tester other) : base(other.Id)
         {
             LastName = other.LastName;
             FirstName = other.FirstName;

@@ -9,7 +9,7 @@ namespace BL
 {
     internal class BLImplementation : IBL
     {
-        private static IDAL instance = null;
+        private IDAL instance = null;
         public BLImplementation()
         {
             try
@@ -263,7 +263,7 @@ namespace BL
         {
             return t.NumOfTests;
         }
-        public bool IsEntitledToALicenseOrNot(Trainee T, CarTypeEnum car)
+        public bool IsHaveLicense(Trainee T, CarTypeEnum car)
         {
 
             return T.ExistingLicenses.Exists(x => x == car);
