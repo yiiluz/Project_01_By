@@ -20,6 +20,17 @@ namespace BO
         {
             this.id = id;
         }
+        public Person(Person person)
+        {
+            id = person.Id;
+            lastName = person.LastName;
+            firstName = person.FirstName;
+            phoneNumber = person.PhoneNumber;
+            gender = person.Gender;
+            address = new Address(person.Address);
+            dateOfBirth = new DateTime();
+            dateOfBirth = person.DateOfBirth;
+        }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }       
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
